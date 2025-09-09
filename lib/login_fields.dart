@@ -9,10 +9,9 @@ class LoginFields extends StatefulWidget {
 }
 
 class _LoginFieldsState extends State<LoginFields> {
-  // estado mutable
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passCtrl = TextEditingController();
+  final _formKey = GlobalKey<FormState>(); // clave del formulario
+  final _emailController = TextEditingController(); // controlador del correo
+  final _passCtrl = TextEditingController(); // controlador de la contraseña
 
   bool _obscure = true; // ocultar/mostrar contraseña
   bool _loading = false; // estado de carga
@@ -28,8 +27,8 @@ class _LoginFieldsState extends State<LoginFields> {
 
   Future<void> _submit() async {
     // enviar formulario
-    FocusScope.of(context).unfocus();
-    final ok = _formKey.currentState?.validate() ?? false;
+    FocusScope.of(context).unfocus(); // cerrar teclado
+    final ok = _formKey.currentState?.validate() ?? false; // validar formulario
     if (!ok) {
       setState(
         () => _error = 'Revisa los campos resaltados.',
@@ -122,11 +121,11 @@ class _LoginFieldsState extends State<LoginFields> {
             // RF2: validación de correo
             TextFormField(
               enabled: !_loading,
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
+              controller: _emailController, // controlador
+              keyboardType: TextInputType.emailAddress, // tipo de teclado
               textCapitalization: TextCapitalization.none,
               autocorrect: false,
-              enableSuggestions: true,
+              enableSuggestions: true, // sugerencias
               autofillHints: const [AutofillHints.email],
               decoration: const InputDecoration(
                 labelText: "Correo Electrónico",
